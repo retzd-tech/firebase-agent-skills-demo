@@ -1,0 +1,18 @@
+{
+  "name": "firebase-agent-skills",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "genkit:ui": "npx genkit-cli start -- node --watch ai/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@genkit-ai/google-genai": "^1.32.0",
+    "genkit": "^1.31.0"
+  }
+}
