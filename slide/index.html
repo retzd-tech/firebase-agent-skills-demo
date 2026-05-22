@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Interactive Presentation</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Import Map for Three.js -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- Fullscreen WebGL Canvas -->
+  <canvas id="presentation-canvas"></canvas>
+
+  <!-- HTML overlay for UI -->
+  <div id="ui-overlay">
+    <!-- Slide Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="dot red"></div>
+        <div class="dot blue"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <h1 id="slide-title">Slide 1</h1>
+    </header>
+
+    <!-- Slide Description Area -->
+    <div class="description-container">
+      <div id="slide-description" class="description-box hidden">
+        <p id="slide-text">This is the description for slide 1.</p>
+      </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+      <button id="prev-btn" class="google-btn" disabled>← Prev</button>
+      <span id="slide-counter">1 / 5</span>
+      <button id="next-btn" class="google-btn">Next →</button>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

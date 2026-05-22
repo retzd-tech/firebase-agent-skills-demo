@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEON ROAMER | 3D Local Multiplayer</title>
+  <!-- SEO & Premium tags -->
+  <meta name="description" content="A gorgeous real-time local multiplayer 3D roam-and-interact sandbox with premium glassmorphism HUD and custom neon particles.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Orbitron:wght@400;600;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Import Map for Three.js -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- Fullscreen WebGL Canvas -->
+  <canvas id="game-canvas"></canvas>
+
+  <!-- HTML overlay for 3D projection tags (Nameplates & Chat Bubbles) -->
+  <div id="html-overlay"></div>
+
+  <!-- STUNNING LOBBY / CUSTOMIZER OVERLAY -->
+  <div id="lobby-screen" class="overlay-container">
+    <div class="lobby-card">
+      <div class="glow-bg"></div>
+      <header class="lobby-header">
+        <div class="brand">
+          <div class="brand-cube"></div>
+          <h1>NEON ROAMER</h1>
+        </div>
+        <p class="subtitle">REAL-TIME MULTIPLAYER 3D ARENA</p>
+      </header>
+
+      <div class="lobby-body">
+        <!-- Nickname Input -->
+        <div class="input-group">
+          <label for="nickname-input">CHOOSE YOUR IDENTITY</label>
+          <div class="input-wrapper">
+            <input type="text" id="nickname-input" placeholder="Enter nickname..." maxlength="15" autocomplete="off">
+            <button id="random-name-btn" title="Randomize Name">🎲</button>
+          </div>
+        </div>
+
+        <!-- Character Customizer -->
+        <div class="character-group">
+          <label>SELECT GOOGLE AVATAR</label>
+          <div class="character-selector">
+            <button class="char-swatch active" data-char="android">🤖 Android</button>
+            <button class="char-swatch" data-char="sparky">🔥 Sparky</button>
+            <button class="char-swatch" data-char="dash">🐦 Dash</button>
+          </div>
+        </div>
+
+        <!-- Ready Button -->
+        <button id="join-btn" class="action-btn">
+          <span>SPAWN IN NEON MATRIX</span>
+          <div class="btn-glow"></div>
+        </button>
+      </div>
+
+      <footer class="lobby-footer">
+        <span>Press <kbd>Enter</kbd> to launch instantly</span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- HEADS-UP DISPLAY (HUD) - ONLY VISIBLE IN-GAME -->
+  <div id="game-hud" class="hud-layer hidden">
+    <!-- Top Left: Server / Lobby Info -->
+    <div class="hud-panel top-left glass">
+      <div class="hud-title-container">
+        <div class="status-indicator online"></div>
+        <h2>NEON CENTRAL</h2>
+      </div>
+      <div class="hud-stat">
+        <span class="label">ACTIVE USERS:</span>
+        <span id="player-count-val" class="value">1</span>
+      </div>
+      <div class="hud-stat">
+        <span class="label">LOCAL PORT:</span>
+        <span class="value cyan">3000</span>
+      </div>
+      <div class="hud-stat">
+        <span class="label">IDENTITY:</span>
+        <span id="my-name-val" class="value yellow">Guest</span>
+      </div>
+    </div>
+
+    <!-- Top Right: Instruction Help Panel -->
+    <div class="hud-panel top-right glass">
+      <h3>COSMIC CONTROLS</h3>
+      <ul class="control-list">
+        <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or <kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> <span>Roam Arena</span></li>
+        <li><kbd>Space</kbd> <span>Hover Jump / Boost</span></li>
+        <li><kbd>E</kbd> or <kbd>Click Arena</kbd> <span>Emit Emote Pulse Wave</span></li>
+        <li><kbd>Enter</kbd> <span>Open / Send Chat</span></li>
+      </ul>
+    </div>
+
+    <!-- Bottom Left: Elegant Chatbox -->
+    <div class="hud-panel bottom-left chat-container glass">
+      <div class="chat-header">
+        <span>MATRIX CHAT</span>
+      </div>
+      <div id="chat-messages" class="chat-logs">
+        <div class="system-message">Matrix initialized. Move around and press 'E' to wave.</div>
+      </div>
+      <form id="chat-form" class="chat-input-bar">
+        <input type="text" id="chat-input" placeholder="Press Enter to type a transmission..." maxlength="60" autocomplete="off">
+        <button type="submit" id="chat-send-btn">SEND</button>
+      </form>
+    </div>
+
+    <!-- Bottom Right: Active Player Roster -->
+    <div class="hud-panel bottom-right roster-container glass">
+      <h3>ACTIVE ROAMERS</h3>
+      <div id="roster-list" class="roster-list">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
